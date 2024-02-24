@@ -1,6 +1,13 @@
+## 2024_02_24 更新
+支持从模版文件`template.csv`中读取课程信息，生成课程表。  
+**使用方法：**  
+根据自己的课程内容填写项目跟目录的`template.csv`文件，然后运行`main.py`文件即可。
 ## Python 大学生课表 (.ics) 生成
 
 ![效果图](image/render.jpg)
+
+
+
 
 iCalendar 是广泛使用的日历数据交换标准，在诸如 Apple 日历、Google Calendar 的日历 app 中创建日历项，不仅可清晰的了解日程安排，更可体验 iOS、Android 系统为日历提供的各种功能：计划出行时间、日程提醒、如 Siri 与 Google Assistant 等智能语音助理自动化服务等
 
