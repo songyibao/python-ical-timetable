@@ -6,14 +6,14 @@ from typing import Any
 
 class Course:
     def __init__(
-        self,
-        name: str,
-        teacher: str,
-        classroom: str,
-        location: Any,
-        weekday: int,
-        weeks: list[int],
-        indexes: list[int],
+            self,
+            name: str,
+            teacher: str,
+            classroom: str,
+            location: Any,
+            weekday: int,
+            weeks: list[int],
+            indexes: list[int],
     ) -> None:
         self.name = name
         self.teacher = teacher
@@ -61,6 +61,20 @@ class Course:
         """
         return [i for i in range(start, end + 1) if not i % 2]
 
+    @staticmethod
+    def all_week(start: int, end: int, flag: int) -> list[int]:
+        """
+        根据flag标记判断返回奇数周或者偶数周列表，flag=0返回所有周列表，flag=1返回奇数周列表，flag=2返回偶数周列表
+        """
+        if flag == 0:
+            return Course.week(start, end)
+        elif flag == 1:
+            return Course.odd_week(start, end)
+        elif flag == 2:
+            return Course.even_week(start, end)
+        else:
+            return []
+
 
 class School:
     headers = [
@@ -77,11 +91,11 @@ class School:
     footers = ["END:VCALENDAR"]
 
     def __init__(
-        self,
-        duration: int = 45,
-        timetable: list[tuple[int, int]] = [],
-        start: tuple[int, int, int] = (2023, 9, 1),
-        courses: list[Course] = [],
+            self,
+            duration: int = 45,
+            timetable: list[tuple[int, int]] = [],
+            start: tuple[int, int, int] = (2023, 9, 1),
+            courses: list[Course] = [],
     ) -> None:
         assert timetable, "请设置每节课的上课时间，以 24 小时制两元素元组方式输入小时、分钟"
         assert len(start) == 3, "请设置为开学第一周的日期，以三元素元组方式输入年、月、日"

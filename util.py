@@ -12,14 +12,14 @@ from data import Course
 #     Course("信号检测与估计", "赵六", "品学楼C411", 品学楼地图["品学楼C"], 4, Course.odd_week(1, 11), [5, 6]),
 #     # 赵六老师的「信号检测与估计」会在第 1 至 11 的奇数周的星期四第 5-6 节在 品学楼C411 教室上课
 # ]
-# 课程名称	星期	开始节数	结束节数	老师	地点	开始周 结束周
-# 计算系统安全	4	2	4	刘培顺	信南B235	1 16
+# 课程名称	星期	开始节数	结束节数	老师	地点	开始周 结束周 单双周(0全1单2双)
+# 计算系统安全	4	2	4	刘培顺	信南B235	1 16 0
 def load_courses_from_csv(csv_path: str) -> list[Course]:
-    data = pd.read_csv("template.csv", encoding="utf-8", dtype={"开始周": int, "结束周": int, "星期": int, "开始节数": int, "结束节数": int})
+    data = pd.read_csv("template.csv", encoding="utf-8", dtype={"开始周": int, "结束周": int, "星期": int, "开始节数": int, "结束节数": int, "单双周(0全1单2双)": int})
     courses = []
     for i in range(len(data)):
         tmp = Course(data['课程名称'][i], data['老师'][i], data['地点'][i], None, int(data['星期'][i]),
-                     Course.week(data["开始周"][i], data["结束周"][i]), [data['开始节数'][i], data['结束节数'][i]])
+                     Course.all_week(data["开始周"][i], data["结束周"][i], data["单双周(0全1单2双)"][i]), [data['开始节数'][i], data['结束节数'][i]])
         # print(tmp.name)
         # print(tmp.teacher)
         # print(tmp.classroom)
